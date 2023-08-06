@@ -25,5 +25,23 @@ pipeline {
          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/Sample/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                   }
             }
+
+       stage('Docker Image Creation') {
+        steps {
+          sh 'docker build -t venugottemukkula/sample:latest .'
+                 }
+           }
+       stage('Docker Login') {
+        steps {
+         withCredentials([usernamePassword(credentialsId: 'docker-hub-sample', passwordVariable: 'dockerHubPossword', usernameVariable: 'dockerHubUser')]) {
+           sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPossword}"
+} 
+                  }
+          }
+       stage('Push Image to DockerHub') {
+        steps { 
+         sh 'docker push venugottemukkula/sample:latest' 
        }
+     } 
   }
+}
