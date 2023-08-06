@@ -31,13 +31,14 @@ pipeline {
           sh 'docker build -t venugottemukkula/sample:latest .'
                  }
            }
-       stage('Docker Login') {
+       stage('DockerLogin') {
         steps {
          withCredentials([usernamePassword(credentialsId: 'docker-hub-sample', passwordVariable: 'dockerHubPossword', usernameVariable: 'dockerHubUser')]) {
            sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPossword}"
-} 
+  } 
                   }
           }
+
        stage('Push Image to DockerHub') {
         steps { 
          sh 'docker push venugottemukkula/sample:latest' 
