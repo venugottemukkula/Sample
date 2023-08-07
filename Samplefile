@@ -28,10 +28,10 @@ pipeline {
 
        stage('Docker Image Creation') {
         steps {
-          sh 'docker Build -tvenugottemukkula/sample:latest .'
+          sh 'docker Build -t venugottemukkula/sample:latest .'
                  }
            }
-       stage('DockerLogin') {
+       stage('Docker Login') {
         steps { 
           withCredentials([usernamePassword(credentialsId: 'docker-venugottemukkula', passwordVariable: 'docker-Possword', usernameVariable: 'docker-User')]) {
            sh "docker login -u ${env.docker-User} -p ${env.docker-Possword}"
