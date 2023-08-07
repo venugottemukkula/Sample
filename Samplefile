@@ -32,10 +32,10 @@ pipeline {
                  }
            }
        stage('DockerLogin') {
-        steps {
-         withCredentials([usernamePassword(credentialsId: 'docker-hub-sample', passwordVariable: 'dockerHubPossword', usernameVariable: 'dockerHubUser')]) {
-           sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPossword}"
-  } 
+        steps { 
+          withCredentials([usernamePassword(credentialsId: 'docker-venugottemukkula', passwordVariable: 'docker-Possword', usernameVariable: 'docker-User')]) {
+           sh "docker login -u ${env.docker-User} -p ${env.docker-Possword}"
+            }  
                   }
           }
 
