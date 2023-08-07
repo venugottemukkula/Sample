@@ -28,7 +28,7 @@ pipeline {
 
        stage('Docker Image Creation') {
         steps {
-          sh 'docker Build -t venugottemukkula/sample:latest .'
+          sh 'docker build -t venugottemukkula/sample:latest .'
                  }
            }
        stage('Docker Login') {
